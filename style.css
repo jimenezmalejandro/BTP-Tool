@@ -1,0 +1,91 @@
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK:500&display=swap');
+    
+    body{
+    background-color: whitesmoke;
+    color: black|;
+    font-family: 'Noto Sans HK', sans-serif;
+    
+    }
+
+    .input-field inline{
+        width: 5px;
+    }
+
+    .inline{
+        width: 55px;
+        height: 100px;
+
+    }
+    
+    
+    
+    .meassures label{
+      display: block;
+    }
+    
+    .meass{
+    width: 40px;
+    text-align: center;
+    }
+    
+    #submit{
+    margin-top: 50px;
+    
+    }
+
+
+  
+  
+  #enterMeassures{
+    margin-bottom: 2px:
+  }
+  
+  .inline{
+    
+     width: 500px;
+     
+  }
+  
+  .left{
+    width:300px;
+    float: left;
+    height: 200px;
+    
+    
+  }
+  .right{
+    width: 150px;
+    float: right;
+    
+  }
+  
+    
+  
+             
+  #infoMsg{
+    
+    width: 8vw;
+    height: 5vw;
+    margin-left:20px;
+    
+    
+              }
+              
+   .container{
+
+    width: 480px;
+   } 
+
+   .masterLeft{
+       width: 45%;
+       float: left;
+       padding-left: 5%;
+   }
+  
+   .masterRight{
+    width: 45%;
+    float: right;
+    padding-right: 5%;
+}
+

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet"  href="style.css">
+      
+    
+  </head>
+  <body>
+
+<div class="masterLeft">
+
+
+    <h1>BTP Estimator </h1><br>
+    
+    
+
+
+    <div class="row"> 
+            <div class="input-field col s10">
+                <i class="material-icons prefix">business_center</i>
+                    <select id="strategy" name="strategy" required>
+                      <option  disabled selected>Select</option>
+                      <option value="conservative">Conservative (room for pricing improvement )</option>
+                      <option value="agressive">Agressive (lowest materials & labor costs in the market)</option>
+                   </select>
+                    <label>Type of Strategy</label>
+            </div>
+        </div>
+
+
+
+
+<div class="row"> 
+    <div class="input-field col s5">
+        <i class="material-icons prefix">straighten</i>
+            <select id="units" name="units" required>
+              <option  disabled selected>Select</option>
+              <option value="milimeters">Milimeters (mm)</option>
+              <option value="inches">Inches (in)</option>
+           </select>
+            <label>Units</label>
+    </div>
+</div><!--END OF MEASSURES SELECTION-->
+    
+        
+    
+              <div class="row">
+                <div class="input-field col s2">
+                <i class="material-icons prefix">trending_flat</i>   
+                  <input id="length" type="text"  class="validate">
+                  <label for="length">Length</label>
+                </div>
+                <div class="input-field col s2">
+                 <i class="material-icons prefix">swap_horiz</i>    
+                  <input id="width" type="text" class="validate">
+                  <label for="width">Width</label>
+                </div>
+                <div class="input-field col s2">
+                    <i class="material-icons prefix">vertical_align_center</i>  
+                        <input id="thickness" type="text" class="validate">
+                        <label for="thickness">Thickness</label>
+                </div>
+              </div> <!--END OF UNITS SELECTION-->
+
+         
+       <div class="form-row">
+        <i class="material-icons prefix">gradient</i>         
+        <label for="material" class="labels"> Material</label>
+           <select name="material" id= "material">
+           <option  disabled selected>Select</option>
+           <option value="Alu Alloy 5052">Alu Alloy 5052</option>
+           <option value="CRS/SPCC">CRS/SPCC</option>
+           <option value="Zinc pre-plating/SECC">Zinc pre-plating/SECC</option>
+           <option value="Hot dipped Gal/SGCC">Hot dipped Gal/SGCC</option>
+           <option value="Tin pre-planting/SPTE">Tin pre-planting/SPTE</option>
+           <option value="Brass /copper">Brass /copper</option>
+           <option value="Stainless steel/Sus304/Sus301">Stainless steel (Sus304/301)</option>
+           <option value="Aly Alloy 6061">Aly Alloy 6061</option>    
+           </select>   
+        </div>     <!--END OF MATERIAL SELECTION-->
+         
+         <div class="form-row">  
+          <i class="material-icons prefix">texture</i>
+           <label for="finish" class="labels">Finish type </label>
+           <select id="finish">
+              <option  disabled selected>Select</option>
+              <option>Zinc plating ( all types)</option>
+              <option>Chromate/alodine/anodized</option>
+              <option>Painting (Powder/oil)</option>
+              <option>No finish required (degrease)</option>
+              <option>Nickel/tin plating</option>
+              <option>Silksceen /printing</option>
+           </select>
+          </div>  <!--END OF FINISH TYPE SELECTION-->
+         
+
+
+          <div class="row">
+            
+                <div class="col s15">
+                 <i class="material-icons prefix">change_history</i>
+                   Bendings:
+                  <div class="input-field inline">
+                   <div class="input-field col s2">   
+                    <input id="bending" type="number" class="validate">
+                    <label for="bending">number</label>
+                   </div> 
+                    
+                  </div>
+                </div>
+              </div>      
+<!-- ENTER NUMBER OF BENDINGS --> 
+
+<!--          EAU       --> 
+
+    <div class="row">
+                
+            <div class="col s15">
+            <i class="material-icons prefix">date_range</i>
+                EAU:
+            <div class="input-field inline">
+            <div class="input-field col s3">   
+                <input id="EAU" type="number" class="validate">
+                <label for="EAU">number</label>
+            </div> 
+                
+            </div>
+            </div>
+        </div>  
+
+
+
+
+<!-- TOGGLE HARDWARE OPTION -->         
+        
+        <p>
+         <label for="hide">
+         <input type="checkbox" id='hide'/>
+         <span>This part includes hardware</span>
+        </label>
+    </p>
+<!-- CHECKBOX -->   
+         
+<!-- HARDWARE QTY AND COMPLEXITY-->
+
+   <div id="hdw" class="inline">  
+        
+              
+             <div class="row">
+                    <div class="input-field col s2">
+                      <input id="qtyHdw" type="text" class="validate" id="qtyHdw">
+                      <label for="qtyHdw">Quantity</label>
+                    </div>
+                
+        </div> 
+
+      
+<div class="container"> <!--CONTAINER-->   
+    <div class="left">
+        <div class="form-row" >    
+             <label for="complexity">Complexity</label>  
+             <select name="complexity" class="qtyAndType" id= "complexity" >
+             <option selected disabled >Select:</option>
+             <option value="simple">Simple</option>
+             <option value="medium">Medium</option>
+             <option value="complex">Complex</option>
+           </select><br><br>
+        </div>       
+    </div>
+
+    
+    
+ <div class="right">   
+    <div id="infoMsg" ></div>
+</div>
+
+</div><!--CONTAINER-->       
+        
+    </div>        
+ 
+      
+
+        
+     
+     
+   
+
+    
+   <button class="btn waves-effect waves-light" type="submit" id="submit">Estimate
+        <i class="material-icons right">attach_money</i>
+      </button>
+            
+
+</div><!--END MASTER LEFT-->        
+<div class="masterRight">
+
+        <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+                <label>Materialize Select</label>
+              </div>
+            
+            <footer class="page-footer">
+              <div class="footer-copyright">
+                    <div class="container">
+                    GQT - Materials team - México 2019
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                    </div>
+                  </div>
+                </footer>
+                
+                
+                
+
+</div><!--END MASTER RIGHT--> 
+
+      
+           
+    
+   <script src="javascript.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
