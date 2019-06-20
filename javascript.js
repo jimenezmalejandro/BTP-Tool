@@ -55,10 +55,18 @@ document.getElementById('hide').addEventListener("click",toggle);
 //Submit data to JS      
  document.getElementById('submit').addEventListener("click",estimate);
  
+ //SHOW PRICING AS SUBMITTED
+ const yourEstimation = document.querySelector('.yourEst');
+ yourEstimation.style.display = 'none';
+ 
    function estimate(){
-     
+    //show master div PRICING MESSAGE
+    yourEstimation.style.display = 'block';
+ 
+
      var userInfo = {};
      
+     userInfo.strategy = document.getElementById("isAssy").value;
      userInfo.units = document.getElementById("units").value;
      userInfo.material = document.getElementById("material").value;
      userInfo.finish = document.getElementById("finish").value;
@@ -74,4 +82,5 @@ document.getElementById('hide').addEventListener("click",toggle);
      google.script.run.estimate(userInfo);
    }
 
+ 
  
