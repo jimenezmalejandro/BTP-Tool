@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     
@@ -9,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet"  href="style.css">
       
+    <?!= include('style'); ?>  
     
   </head>
   <body>
@@ -16,7 +16,8 @@
 <div class="masterLeft">
 
 
-    <h1>BTP Estimator </h1><br>
+    <h1>Should Cost Tool </h1>
+    <h4> Sheet Metal </h4><br/>
     
     
 
@@ -26,8 +27,9 @@
                 <i class="material-icons prefix">business_center</i>
                     <select id="strategy" name="strategy" required>
                       <option  disabled selected>Select</option>
-                      <option value="conservative">Conservative (room for pricing improvement )</option>
-                      <option value="agressive">Agressive (lowest materials & labor costs in the market)</option>
+                      <option value="3">Conservative (room for pricing improvement )</option>
+                      <option value="2">Medium (average market matl costs)</option>
+                      <option value="1">Agressive (lowest materials & labor costs in the market)</option>
                    </select>
                     <label>Type of Strategy</label>
             </div>
@@ -75,37 +77,52 @@
         <label for="material" class="labels"> Material</label>
            <select name="material" id= "material">
            <option  disabled selected>Select</option>
-           <option value="Alu Alloy 5052">Alu Alloy 5052</option>
+           <option value="Alu alloy 5052">Alu alloy 5052</option>
            <option value="CRS/SPCC">CRS/SPCC</option>
            <option value="Zinc pre-plating/SECC">Zinc pre-plating/SECC</option>
-           <option value="Hot dipped Gal/SGCC">Hot dipped Gal/SGCC</option>
-           <option value="Tin pre-planting/SPTE">Tin pre-planting/SPTE</option>
+           <option value="Hot dipped Gal /SGCC">Hot dipped Gal /SGCC</option>
+           <option value="Tin pre-plating /SPTE">Tin pre-plating /SPTE</option>
            <option value="Brass /copper">Brass /copper</option>
-           <option value="Stainless steel/Sus304/Sus301">Stainless steel (Sus304/301)</option>
-           <option value="Aly Alloy 6061">Aly Alloy 6061</option>    
+           <option value="Stainless steel (Sus304/Sus301)">Stainless steel (Sus304/301)</option>
+           <option value="Alu alloy 6061">Alu Alloy 6061</option>  
            </select>   
         </div>     <!--END OF MATERIAL SELECTION-->
          
+         
          <div class="form-row">  
           <i class="material-icons prefix">texture</i>
-           <label for="finish" class="labels">Finish type </label>
-           <select id="finish">
+           <label for="finishOne" class="labels">Finish type 1 </label>
+           <select id="finishOne">
               <option  disabled selected>Select</option>
-              <option>Zinc plating ( all types)</option>
-              <option>Chromate/alodine/anodized</option>
-              <option>Painting (Powder/oil)</option>
-              <option>No finish required (degrease)</option>
-              <option>Nickel/tin plating</option>
-              <option>Silksceen /printing</option>
+              <option value = "Zinc plating ( all types)">Zinc plating ( all types)</option>
+              <option value= "Chromate/alodine/anodized" >Chromate/alodine/anodized</option>
+              <option value="Painting (Powder/oil)">Painting (Powder/oil)</option>
+              <option value="No finish required (degrease)">No finish required (degrease)</option>
+              <option value="Nickel/tin plating">Nickel/tin plating</option>
+              <option value = "Silkscreen /printing">Silkscreen /printing</option>
            </select>
-          </div>  <!--END OF FINISH TYPE SELECTION-->
+          </div>  <!--END OF FINISH TYPE SELECTION 1-->
+          
+        <div class="form-row">  
+          <i class="material-icons prefix">texture</i>
+           <label for="finishTwo" class="labels">Finish type 2 </label>
+           <select id="finishTwo">
+              <option  disabled selected>Select</option>
+              <option value = "Zinc plating ( all types)">Zinc plating ( all types)</option>
+              <option value= "Chromate/alodine/anodized" >Chromate/alodine/anodized</option>
+              <option value="Painting (Powder/oil)">Painting (Powder/oil)</option>
+              <option value="No finish required (degrease)">No finish required (degrease)</option>
+              <option value="Nickel/tin plating">Nickel/tin plating</option>
+              <option value = "Silkscreen /printing">Silkscreen /printing</option>
+           </select>
+          </div>  <!--END OF FINISH TYPE SELECTION 2-->
          
 
           <div class="row">
             <div class="input-field col s5">
             <i class="material-icons prefix">change_history</i>   
-              <input id="bendings" type="text"  class="validate">
-              <label for="bendings"># Bendings</label>
+              <input id="bending" type="text"  class="validate">
+              <label for="bending"># Bendings</label>
             </div>
             <div class="input-field col s5">
               <i class="material-icons prefix">date_range</i>    
@@ -151,9 +168,9 @@
              <label for="complexity">Complexity</label>  
              <select name="complexity" class="qtyAndType" id= "complexity" >
              <option selected disabled >Select:</option>
-             <option value="simple">Simple</option>
-             <option value="medium">Medium</option>
-             <option value="complex">Complex</option>
+             <option value="Simple">Simple</option>
+             <option value="Medium">Medium</option>
+             <option value="Complex">Complex</option>
            </select><br><br>
         </div>       
     </div>
@@ -168,17 +185,10 @@
         
     </div>        
  
-      
-
-        
-     
-     
-   
-
     
    <button class="btn waves-effect waves-light" type="submit" id="submit">Estimate
         <i class="material-icons right">attach_money</i>
-      </button>
+      </button> <br><br>
             
     
 
@@ -187,26 +197,30 @@
 
         <div class="yourEst">
           <h3>ⓘ Pricing</h3>
-          <h5>Estimated parts will show here as you estimate</h5>
+          <h5>Estimations will prepend as you enter</h5>
         </div>
+        
+  <div class="estimation1"> <br>
+    
+  </div>      
                 
-                
-                
+      <div class="export">  
+         <button class="btn waves-effect waves-light" type="submit" id="exportToGs">Export to Google Sheets
+          <i class="material-icons right">cloud_upload</i>
+        </button>       
+      </div>
+                    
 
 </div><!--END MASTER RIGHT--> 
 
       
            
-    
+<?!= include('clientGS'); ?>
    <script src="javascript.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   
   </body>
 </html>
-
-
-
-
 
 
 
