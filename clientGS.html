@@ -1,5 +1,7 @@
 <script>
 
+
+
 var arr = [];
 console.log(arr);
 
@@ -25,7 +27,6 @@ document.getElementById('hide').addEventListener("click",toggle);
           show.style.display = 'none'
         }else{
           show.style.display = 'block';
-          
          }
         }
         
@@ -83,12 +84,16 @@ function estimate(){
    
    }
    
-
+   
+//TOGGLE PRICE ON MASTER RIGHT
+var estimation = document.querySelector('.estimation1');
+estimation.style.display = 'none';
 
 
 function printEstimate (userInfo){
     yourEstimation.style.display = 'block';
     estimation.style.display = 'block';
+    exp.style.display = 'block';
     
     var price = document.createElement('div');
      price.classList.add('printEstimation');
@@ -106,19 +111,20 @@ function printEstimate (userInfo){
     
 }
 
+var exp = document.querySelector('.export');
+exp.style.display = 'none';
+
+//
+exp.addEventListener("click", function (){
+   
+ google.script.run.toGS(arr);
+ 
+});
 
 
 
 
 
-
-//TOGGLE PRICE ON MASTER RIGHT
-var estimation = document.querySelector('.estimation1');
-estimation.style.display = 'none';
-
-//Estimation Button
-var estimation = document.querySelector('.export');
-estimation.style.display = 'none';
 
 
 

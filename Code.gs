@@ -21,7 +21,6 @@ var bendingCost = sheet.getRange(25, 1, 1, 2).getValues();
 function estimate(userInfo) {
 //userinfo.strategy = 1 is agressive, 2 is intermediate, 3 is conservative
 
-
       userInfo.bendingCost = bendingCost[0][1];
       
       hardwareCost.forEach(function (element){
@@ -115,7 +114,36 @@ function estimate(userInfo) {
 }
 
 
+// Parse JSON strings to objects and push to newArr. Create new Google sheet and set all objects in the sheet.
 
+function toGS (arr){
+
+  var newArr = [];
+  
+  arr.forEach(function (element){
+      newArr.push(JSON.parse(element));
+  })
+  
+ var projName = newArr[0].project + " Sheet Metal";
+ var newGS = SpreadsheetApp.create(projName);
+ var address = newGS.getUrl();
+ var id = newGS.getId();
+ 
+ var ss = SpreadsheetApp.openById(id);
+ var sheet = ss.getSheetByName('Sheet1');
+ var i = 2; 
+ var initRange = sheet.getRange(i, 1);
+ 
+ newArr.forEach(function(element){
+   sheet.getRange(i,1).setValue(element);
+   i++;
+ });
+ 
+
+
+ 
+ Logger.log(address);
+}
 
 
 
