@@ -16,6 +16,7 @@ var hardwareCost = sheet.getRange(39, 1, 3, 2).getValues();
 var bendingCost = sheet.getRange(25, 1, 1, 2).getValues();   
 
 
+
 //ESTIMATE FUNCTION triggered with click. Will estimate pricing based on the information input
 function estimate(userInfo) {
 //userinfo.strategy = 1 is agressive, 2 is intermediate, 3 is conservative
@@ -109,15 +110,9 @@ function estimate(userInfo) {
       }
       
       
-     
-     Logger.log(userInfo);
-     
      return userInfo; 
      
 }
-
-
-
 
 
 
