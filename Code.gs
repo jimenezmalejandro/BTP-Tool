@@ -118,27 +118,52 @@ function estimate(userInfo) {
 
 function toGS (arr){
 
-  var newArr = [];
-  
-  arr.forEach(function (element){
-      newArr.push(JSON.parse(element));
-  })
-  
- var projName = newArr[0].project + " Sheet Metal";
- var newGS = SpreadsheetApp.create(projName);
- var address = newGS.getUrl();
- var id = newGS.getId();
+    var newArr = [];
+    
+    var index = [
+    ["Project #","Strategy","Units","Material","Length","Width","Thickness","Weight","Area","Part density","Cost of material","Finish type 1","Finish 1 cost","Finish type 2","Finish 2 cost","Number of bendindgs","Cost per bending","EAU","Hardware qty","Hardware complexity","Cost per hardware unit","Total hardware cost","Part estimatation in USD"]
+    
+        ];
+        
+    var indexObj = { project:1,strategy:2, units:3,	material:4,	length:5, width:6, thickness:7,	weight:8, surfaceArea:9, density:10, mtlPrice:11, finishOne:12,	totalFinishPrice1:13, finishTwo:14,	totalFinishPrice2:15, bending:16, bendingCost:17, EAU:18, qtyHdw:19, complexity:20,	hardwareCost:21, totalHdwCost:22, estimation:23
+};
+    
+    arr.forEach(function (element){
+        newArr.push(JSON.parse(element));
+    });
+    
+    
+   var projName = newArr[1].project + " Sheet Metal"; 
+   var newGS = SpreadsheetApp.create(projName);
+   var address = newGS.getUrl();
+   var id = newGS.getId();
+   var ss = SpreadsheetApp.openById(id);
+   var sheet = ss.getSheetByName('Sheet1');
+   var i = 2; 
+   var j = 1;
+   var initRange = sheet.getRange(i, 1);
+   var row = 2;
+   
+   index[0].forEach(function (element){
+       sheet.getRange(1,j).setValue(element)
+       j++;
+   });
+   
+   //Loop through each Object's keys and find its index vs indexObj, assign that index as the column number.
+   newArr.forEach(function(obj){ 
+     Object.keys(obj).forEach(function (elem){
+          Object.keys(indexObj).forEach(function (indxObjKey){
+              if (indxObjKey === elem){
+                     var column = indexObj[indxObjKey] ;
+                     sheet.getRange(row, column).setValue(obj[elem]);
+                   }
+              });         
+         });
+         
+    row++;
+   });
  
- var ss = SpreadsheetApp.openById(id);
- var sheet = ss.getSheetByName('Sheet1');
- var i = 2; 
- var initRange = sheet.getRange(i, 1);
- 
- newArr.forEach(function(element){
-   sheet.getRange(i,1).setValue(element);
-   i++;
- });
- 
+
 
 
  
@@ -148,7 +173,32 @@ function toGS (arr){
 
 
 
+/*
+project	Project #
+strategy	Strategy
+units	Units
+material	Material
+length	Length
+width	Width
+thickness	Thickness
+weight	Weight
+surfaceArea	Area
+density	Part density
+mtlPrice	Cost of material
+finishOne	Finish type 1
+totalFinishPrice1	Finish 1 cost
+finishTwo	Finish type 2
+totalFinishPrice2	Finish 2 cost
+bending	Number of bendindgs
+bendingCost	Cost per bending
+EAU	EAU
+qtyHdw	Hardware qty
+complexity	Hardware complexity
+hardwareCost	Cost per hardware unit
+totalHdwCost	Total hardware cost
+estimation	Part estimatation in USD
 
+*/
 
 
 
