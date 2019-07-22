@@ -48,9 +48,6 @@ document.getElementById('hide').addEventListener("click",toggle);
                 }            
             
             
-            
-            
-
 
 
 //     ESTIMATE BUTTON , SUBMIT OBJECT WITH VALUE TO SERVER
@@ -61,7 +58,7 @@ document.getElementById('hide').addEventListener("click",toggle);
  const yourEstimation = document.querySelector('.yourEst');
  yourEstimation.style.display = 'none';
  
-var i = 0;
+  var i = 0;
 
 function estimate(){
   
@@ -74,15 +71,12 @@ function estimate(){
                    }
              });
       userInfo.hide = document.querySelector('#hide').checked;
-     
+      
 //  google.script.run.estimate(userInfo);
-  
        i++;
-
   google.script.run.withSuccessHandler(printEstimate).estimate(userInfo); 
    
    }
-   
    
 //TOGGLE PRICE ON MASTER RIGHT
 var estimation = document.querySelector('.estimation1');
@@ -90,37 +84,45 @@ estimation.style.display = 'none';
 
 
 function printEstimate (userInfo){
-    yourEstimation.style.display = 'block';
-    estimation.style.display = 'block';
-    exp.style.display = 'block';
-    
-    var price = document.createElement('div');
-     price.classList.add('printEstimation');
-     price.innerText  = `Estimation ${i}
-     Material: ${userInfo.material} with ${userInfo.bending} bendings. Hardware: ${userInfo.hide === true ? 'Yes' : 'No'}
-     Sheet Area: ${Math.round(userInfo.surfaceArea *100 )/100}mts, Total Volume: ${Math.round(userInfo.weight *100)/100}Kgs, 
-     Estimated Price$: ${Math.round(userInfo.estimation * 100)/100} `;
-    estimation.prepend(price);
-    
-    var jason = JSON.stringify(userInfo);
-   
-     arr.push(jason);
+      yourEstimation.style.display = 'block';
+      estimation.style.display = 'block';
+      exp.style.display = 'block';
+      
+      var price = document.createElement('div');
+       price.classList.add('printEstimation');
+       price.innerText  = `Estimation ${i}
+       Material: ${userInfo.material} with ${userInfo.bending} bendings. Hardware: ${userInfo.hide === true ? 'Yes' : 'No'}
+       Sheet Area: ${Math.round(userInfo.surfaceArea *1000 )/1000}m², Total Volume: ${Math.round(userInfo.weight *1000)/1000}Kgs, 
+       Estimated Price$: ${Math.round(userInfo.estimation * 1000)/1000} `;
+      estimation.prepend(price);
+      
+      var jason = JSON.stringify(userInfo);
      
-     console.log(arr);
+       arr.push(jason);
+       
+       console.log(arr);
+    }
     
-}
-
-var exp = document.querySelector('.export');
-exp.style.display = 'none';
-
-//
-exp.addEventListener("click", function (){
+  
+  var exp = document.querySelector('.export');
+  exp.style.display = 'none';
+  
+  //Find and replace
+  exp.addEventListener("click", function (){
+        
+   google.script.run.withSuccessHandler(printUrl).toGS(arr);
    
- google.script.run.toGS(arr);
- 
-});
+  });
 
-
+   function printUrl(address){
+     var link = document.createElement('a');
+     link.target="_blank";
+     link.href = address;
+     link.innerText = 'Export complete. Click here to go to GS';
+     
+     document.querySelector('.GSLink').append(link);
+     
+ }
 
 
 

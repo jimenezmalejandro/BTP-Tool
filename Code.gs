@@ -1,7 +1,15 @@
 
 //LOAD WEB APP
-function doGet() {
-  return HtmlService.createTemplateFromFile('index').evaluate();
+function doGet(e) {
+Logger.log(e);
+  if(e.parameter.page==undefined){
+    return HtmlService.createTemplateFromFile('Home Page').evaluate();
+      }
+
+  else{
+      var page = e.parameter.page.toString();
+      return HtmlService.createTemplateFromFile(page).evaluate();
+    }
   
 }
 
@@ -126,14 +134,14 @@ function toGS (arr){
         ];
         
     var indexObj = { project:1,strategy:2, units:3,	material:4,	length:5, width:6, thickness:7,	weight:8, surfaceArea:9, density:10, mtlPrice:11, finishOne:12,	totalFinishPrice1:13, finishTwo:14,	totalFinishPrice2:15, bending:16, bendingCost:17, EAU:18, qtyHdw:19, complexity:20,	hardwareCost:21, totalHdwCost:22, estimation:23
-};
+    };
     
     arr.forEach(function (element){
         newArr.push(JSON.parse(element));
     });
     
     
-   var projName = newArr[1].project + " Sheet Metal"; 
+   var projName = newArr[0].project + " Sheet Metal"; 
    var newGS = SpreadsheetApp.create(projName);
    var address = newGS.getUrl();
    var id = newGS.getId();
@@ -163,42 +171,12 @@ function toGS (arr){
     row++;
    });
  
-
-
-
- 
  Logger.log(address);
+ 
+    return address;
+ 
 }
 
-
-
-
-/*
-project	Project #
-strategy	Strategy
-units	Units
-material	Material
-length	Length
-width	Width
-thickness	Thickness
-weight	Weight
-surfaceArea	Area
-density	Part density
-mtlPrice	Cost of material
-finishOne	Finish type 1
-totalFinishPrice1	Finish 1 cost
-finishTwo	Finish type 2
-totalFinishPrice2	Finish 2 cost
-bending	Number of bendindgs
-bendingCost	Cost per bending
-EAU	EAU
-qtyHdw	Hardware qty
-complexity	Hardware complexity
-hardwareCost	Cost per hardware unit
-totalHdwCost	Total hardware cost
-estimation	Part estimatation in USD
-
-*/
 
 
 
