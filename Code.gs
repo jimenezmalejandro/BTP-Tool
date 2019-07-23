@@ -1,16 +1,14 @@
 
 //LOAD WEB APP
 function doGet(e) {
-Logger.log(e);
-  if(e.parameter.page==undefined){
-    return HtmlService.createTemplateFromFile('Home Page').evaluate();
-      }
-
-  else{
-      var page = e.parameter.page.toString();
-      return HtmlService.createTemplateFromFile(page).evaluate();
-    }
   
+  if(e.parameters.v == "sheet"){
+  
+    return HtmlService.createTemplateFromFile('index').evaluate();  
+    } else{
+      
+      return HtmlService.createTemplateFromFile('Home').evaluate();
+    }
 }
 
 
