@@ -13,44 +13,50 @@
   </head>
   
   <body>
+      
+       <h1> Should Cost Tool</h1>     
+      <!--Buttons --> 
+      
+             <div class="projectNumber">
+               <div class="row">
+                  <div class="input-field col s3">
+                   <i class="material-icons prefix">account_balance_wallet</i>   
+                    <input id="project" type="text"  class="validate project">
+                    <label for="project">Project </label>
+                    <span class="helper-text" data-error="wrong" data-success="Enter project number and click on start">Format Q-IMS-#</span>
+                  </div>
+                        <button class="startButton btn waves-effect waves-light">Start</button>
+                
+            </div>
+        </div>
+         
 
- <h1> Should Cost Tool</h1>     
-<!--Buttons --> 
+      <!--Home Buttons DIV -->        
+      <div class="HomeButtons">
+         <div>
+           <a href= "<?=ScriptApp.getService().getUrl();?>?v=sheet" class="btn waves-effect waves-light" type="submit" id="submit">Sheet Metal</a>
+         </div>
+      
+      
+       <div>
+           <a  class="btn waves-effect waves-light" type="submit" id="submit">Plastic</a>
+       </div>
+      
+        <div>
+           <a  class=" btn waves-effect waves-light" type="submit" id="submit">Machined</a>
+        </div>  
+      
+       
+          <div>
+           <a  class="btn waves-effect waves-light" type="submit" id="submit">PCB</a>
+          </div>
+      <!--End of HomeButtons DIV-->
+      </div>    
 
-  <div class="row">
-    <div class="col s12">
-    <div> 
-     <a href= "<?=ScriptApp.getService().getUrl();?>?v=sheet" class="btn waves-effect waves-light" type="submit" id="submit">Sheet Metal</a>
-    </div> 
-   </div>
-</div>
-
- <div class="row">
-    <div class="col s12">
-    <div>  
-     <a  class="btn waves-effect waves-light" type="submit" id="submit">Plastic</a>
-    </div>
-   </div>
-  </div>
-
-  <div class="row">
-    <div class="col s12">
-    <div>
-     <a  class=" btn waves-effect waves-light" type="submit" id="submit">Machined</a>
-    </div>
-   </div>
-  </div>
-
- <div class="row">
-    <div class="col s12">
-    <div>
-     <a  class="btn waves-effect waves-light" type="submit" id="submit">PCB</a>
-    </div>
-   </div>
-  </div>    
 
    <script src="javascript.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+ 
+ <?!= include('clientHOMEgs'); ?> 
   </body>
 </html>

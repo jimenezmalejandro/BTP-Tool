@@ -1,20 +1,18 @@
 <script>
 
 
-
 var arr = [];
-console.log(arr);
+
+
+document.getElementById("hdw").style.display = "none";
+document.getElementById("infoMsg").style.display = "block";
+document.getElementById("infoMsg").style.display = "none";
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
 });
-
-
-   
-document.getElementById("hdw").style.display = "none";
-document.getElementById("infoMsg").style.display = "block";
-document.getElementById("infoMsg").style.display = "none";
 
 
 //Toggle Hardware option    
@@ -33,6 +31,7 @@ document.getElementById('hide').addEventListener("click",toggle);
        
 //Show Information square
   document.getElementById('complexity').addEventListener("change",toggleInfoSqr);
+  
             function toggleInfoSqr (){
             var value = document.getElementById('complexity').value;
             if(value ==='Simple'){
@@ -120,9 +119,11 @@ function printEstimate (userInfo){
      link.href = address;
      link.innerText = 'Export complete. Click here to go to GS';
      
-     document.querySelector('.GSLink').append(link);
-     
+     document.querySelector('.GSLink').innerHTML = link;  
  }
+
+
+
 
 
 

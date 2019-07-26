@@ -1,0 +1,40 @@
+<script>
+
+    //Q-IMS-... project number
+  var qims = 'tbd';
+  
+  //Hiding buttons in home
+  var homeButtons = document.querySelector('.HomeButtons');
+  homeButtons.style.display = 'none';
+  
+  //hiding start button
+  var startButton = document.querySelector('.startButton');
+  startButton.style.display = 'none';
+  
+  //If Project # > 5 show Start button
+  var project = document.querySelector('.project');
+  project.addEventListener("input",(e)=>{
+          if(e.target.value.length >= 5){
+              startButton.style.display = 'block';
+              qims = e.target.value;
+      }
+  });
+  
+  //Project Number DIV = Input Proj #
+  var projectNumber = document.querySelector('.projectNumber');
+  
+  
+  //Start Button clicked, show all buttons, replace for Actual proj # when clicked
+  startButton.addEventListener("click",(e) =>{
+      homeButtons.style.display = 'block';
+      projectNumber.innerHTML = `<h3> Project # ${qims} </h3>`;
+      var projNum = e.target.value;
+      
+        google.script.run.start(projNum);
+  });
+
+
+
+
+
+</script>

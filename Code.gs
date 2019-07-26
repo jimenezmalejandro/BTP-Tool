@@ -1,10 +1,20 @@
+var Route = {};
+Route.path = function (route,callback){
+  Route[route] = callback;
+  
+}
 
 //LOAD WEB APP
 function doGet(e) {
+
+  Route.path("sheet",loadSheetMetal);
   
-  if(e.parameters.v == "sheet"){
   
-    return HtmlService.createTemplateFromFile('index').evaluate();  
+  
+  if(Route[e.parameters.v] ){
+  
+      return Route[e.parameters.v]();
+    
     } else{
       
       return HtmlService.createTemplateFromFile('Home').evaluate();
@@ -12,15 +22,26 @@ function doGet(e) {
 }
 
 
-//GET MATERIAL COST FROM GSM COST SHEET
-var ss = SpreadsheetApp.openById('1kFtNEVhIQr3mMaFbXXP8hMTl_nhTr-7pHtprRf4zf5U');
-var sheet = ss.getSheetByName('Sheet Metal');
-var materialType = sheet.getRange(5, 1,8, 5).getValues();
-var finish = sheet.getRange(16, 1, 6, 4).getValues();
-var costFactor = sheet.getRange(30, 1, 6, 3).getValues();
-var hardwareCost = sheet.getRange(39, 1, 3, 2).getValues();
-var bendingCost = sheet.getRange(25, 1, 1, 2).getValues();   
+function loadSheetMetal(){
+    
+   return HtmlService.createTemplateFromFile('index').evaluate();    
 
+}
+
+
+
+
+
+
+
+//GET MATERIAL COST FROM GSM COST SHEET
+  var ss = SpreadsheetApp.openById('1kFtNEVhIQr3mMaFbXXP8hMTl_nhTr-7pHtprRf4zf5U');
+  var sheet = ss.getSheetByName('Sheet Metal');
+  var materialType = sheet.getRange(5, 1,8, 5).getValues();
+  var finish = sheet.getRange(16, 1, 6, 4).getValues();
+  var costFactor = sheet.getRange(30, 1, 6, 3).getValues();
+  var hardwareCost = sheet.getRange(39, 1, 3, 2).getValues();
+  var bendingCost = sheet.getRange(25, 1, 1, 2).getValues();  
 
 
 //ESTIMATE FUNCTION triggered with click. Will estimate pricing based on the information input
@@ -127,11 +148,11 @@ function toGS (arr){
     var newArr = [];
     
     var index = [
-    ["Project #","Strategy","Units","Material","Length","Width","Thickness","Weight","Area","Part density","Cost of material","Finish type 1","Finish 1 cost","Finish type 2","Finish 2 cost","Number of bendindgs","Cost per bending","EAU","Hardware qty","Hardware complexity","Cost per hardware unit","Total hardware cost","Part estimatation in USD"]
+    ["Part Number","Strategy","Units","Material","Length","Width","Thickness","Weight","Area","Part density","Cost of material","Finish type 1","Finish 1 cost","Finish type 2","Finish 2 cost","Number of bendindgs","Cost per bending","EAU","Hardware qty","Hardware complexity","Cost per hardware unit","Total hardware cost","Part estimatation in USD"]
     
         ];
         
-    var indexObj = { project:1,strategy:2, units:3,	material:4,	length:5, width:6, thickness:7,	weight:8, surfaceArea:9, density:10, mtlPrice:11, finishOne:12,	totalFinishPrice1:13, finishTwo:14,	totalFinishPrice2:15, bending:16, bendingCost:17, EAU:18, qtyHdw:19, complexity:20,	hardwareCost:21, totalHdwCost:22, estimation:23
+    var indexObj = { partNumber:1,strategy:2, units:3,	material:4,	length:5, width:6, thickness:7,	weight:8, surfaceArea:9, density:10, mtlPrice:11, finishOne:12,	totalFinishPrice1:13, finishTwo:14,	totalFinishPrice2:15, bending:16, bendingCost:17, EAU:18, qtyHdw:19, complexity:20,	hardwareCost:21, totalHdwCost:22, estimation:23
     };
     
     arr.forEach(function (element){
