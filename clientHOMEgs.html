@@ -24,15 +24,25 @@
   var projectNumber = document.querySelector('.projectNumber');
   
   
-  //Start Button clicked, show all buttons, replace for Actual proj # when clicked
+  //Start Button clicked, show all buttons, replace for Actual proj # when clicked // Call start() in order to create a new Google Sheet to paste all the info
   startButton.addEventListener("click",(e) =>{
       homeButtons.style.display = 'block';
       projectNumber.innerHTML = `<h3> Project # ${qims} </h3>`;
-      var projNum = e.target.value;
-      
-        google.script.run.start(projNum);
+                   
+          google.script.run.withSuccessHandler(returnGSUrl).start(qims);
   });
 
+
+// This funciton returns the URL of the Google Sheet where the estimations are put into.
+function returnGSUrl (url){  
+    console.log(url);
+    
+    var sheetUrl = url;
+    
+   localStorage.setItem("url", sheetUrl);
+
+}
+  
 
 
 

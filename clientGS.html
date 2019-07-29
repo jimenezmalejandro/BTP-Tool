@@ -82,11 +82,13 @@ var estimation = document.querySelector('.estimation1');
 estimation.style.display = 'none';
 
 
-function printEstimate (userInfo){
+  function printEstimate (userInfo){
       yourEstimation.style.display = 'block';
       estimation.style.display = 'block';
       exp.style.display = 'block';
-      
+      addToSheet.style.display = 'block';
+        //var googleSheetURL = localStorage.getItem("url");
+        //console.log(googleSheetURL)
       var price = document.createElement('div');
        price.classList.add('printEstimation');
        price.innerText  = `Estimation ${i}
@@ -106,6 +108,9 @@ function printEstimate (userInfo){
   var exp = document.querySelector('.export');
   exp.style.display = 'none';
   
+  var addToSheet = document.querySelector('.addToSheet');
+  addToSheet.style.display = 'none';
+  
   //Find and replace
   exp.addEventListener("click", function (){
         
@@ -122,6 +127,11 @@ function printEstimate (userInfo){
      document.querySelector('.GSLink').innerHTML = link;  
  }
 
+  addToSheet.addEventListener("click", ()=> {
+    var googleSheetURL = localStorage.getItem("url");
+       console.log(googleSheetURL)
+
+});
 
 
 

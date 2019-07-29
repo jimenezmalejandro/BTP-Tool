@@ -197,6 +197,29 @@ function toGS (arr){
 }
 
 
+/*********************************************** START **************************************/
+//Create new Google Sheet for this Project Number
+function start (projNum){
+  
+  var projNum =  projNum + ' Should Cost Web App';
+  var newSheet = SpreadsheetApp.create(projNum);
+  var id = newSheet.getId();
+  var origin = DriveApp.getFileById(id);
+  var folder = DriveApp.getFolderById('1xKkZ7H4J8S6aKEBsSYffxp6pIzHsMV0V');
+  var fileCopied = origin.makeCopy(folder);
+  var fileCopiedUrl = fileCopied.getUrl();
+  
+  DriveApp.getFileById(id).setTrashed(true);
+  
+    Logger.log(fileCopiedUrl);
+    return fileCopiedUrl;
+
+}//end of START
+
+
+
+
+
 
 
 
