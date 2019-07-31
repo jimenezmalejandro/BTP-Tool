@@ -1,5 +1,6 @@
 <script>
 
+var googleSheetURL = localStorage.getItem("url");
 
 var arr = [];
 
@@ -60,7 +61,8 @@ document.getElementById('hide').addEventListener("click",toggle);
   var i = 0;
 
 function estimate(){
-  
+
+    
      var userInfo = {};
      var ids = document.querySelectorAll('*[id]'); 
      
@@ -69,6 +71,9 @@ function estimate(){
                    userInfo[element.id] = element.value;
                    }
              });
+               //ADD THE googleSheet -URL TO THE userInfo OBJECT
+               //userInfo.googleSheetURL = googleSheetURL;   
+             
       userInfo.hide = document.querySelector('#hide').checked;
       
 //  google.script.run.estimate(userInfo);
@@ -83,18 +88,22 @@ estimation.style.display = 'none';
 
 
   function printEstimate (userInfo){
+  
+      addMoreBTP.style.display = 'block';
       yourEstimation.style.display = 'block';
       estimation.style.display = 'block';
-      exp.style.display = 'block';
+      //exp.style.display = 'block';
       addToSheet.style.display = 'block';
         //var googleSheetURL = localStorage.getItem("url");
         //console.log(googleSheetURL)
       var price = document.createElement('div');
        price.classList.add('printEstimation');
-       price.innerText  = `Estimation ${i}
-       Material: ${userInfo.material} with ${userInfo.bending} bendings. Hardware: ${userInfo.hide === true ? 'Yes' : 'No'}
-       Sheet Area: ${Math.round(userInfo.surfaceArea *1000 )/1000}m², Total Volume: ${Math.round(userInfo.weight *1000)/1000}Kgs, 
-       Estimated Price$: ${Math.round(userInfo.estimation * 1000)/1000} `;
+             //Material: ${userInfo.material} with ${userInfo.bending} bendings. Hardware: ${userInfo.hide === true ? 'Yes' : 'No'}
+             //Sheet Area: ${Math.round(userInfo.surfaceArea *1000 )/1000}m², Total Volume: ${Math.round(userInfo.weight *1000)/1000}Kgs, 
+       price.innerText  = `Part Number ${userInfo.partNumber}
+         Estimated Price$: ${Math.round(userInfo.estimation * 1000)/1000} 
+       
+       `;
       estimation.prepend(price);
       
       var jason = JSON.stringify(userInfo);
@@ -126,14 +135,19 @@ estimation.style.display = 'none';
      
      document.querySelector('.GSLink').innerHTML = link;  
  }
+ 
 
-  addToSheet.addEventListener("click", ()=> {
-    var googleSheetURL = localStorage.getItem("url");
+  addtoGS.addEventListener("click", ()=> {
+    //var googleSheetURL = localStorage.getItem("url");
+       
+       google.script.run.toGS(arr,googleSheetURL);
+       
        console.log(googleSheetURL)
 
-});
+    });
 
-
+  var addMoreBTP = document.querySelector('.addMoreBTP');
+  addMoreBTP.style.display = 'none';
 
 
 

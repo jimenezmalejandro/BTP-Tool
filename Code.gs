@@ -10,7 +10,6 @@ function doGet(e) {
   Route.path("sheet",loadSheetMetal);
   
   
-  
   if(Route[e.parameters.v] ){
   
       return Route[e.parameters.v]();
@@ -32,7 +31,9 @@ function loadSheetMetal(){
 
 
 
-
+// GOOGLE SHEET URL
+var GSUrl = "";
+Logger.log('This is GSUrl:' + GSUrl);
 
 //GET MATERIAL COST FROM GSM COST SHEET
   var ss = SpreadsheetApp.openById('1kFtNEVhIQr3mMaFbXXP8hMTl_nhTr-7pHtprRf4zf5U');
@@ -47,7 +48,7 @@ function loadSheetMetal(){
 //ESTIMATE FUNCTION triggered with click. Will estimate pricing based on the information input
 function estimate(userInfo) {
 //userinfo.strategy = 1 is agressive, 2 is intermediate, 3 is conservative
-
+      
       userInfo.bendingCost = bendingCost[0][1];
       
       hardwareCost.forEach(function (element){
@@ -143,8 +144,8 @@ function estimate(userInfo) {
 
 // Parse JSON strings to objects and push to newArr. Create new Google sheet and set all objects in the sheet.
 
-function toGS (arr){
-
+function toGS (arr,googleSheetURL){
+    Logger.log(GSUrl);
     var newArr = [];
     
     var index = [
@@ -159,12 +160,17 @@ function toGS (arr){
         newArr.push(JSON.parse(element));
     });
     
-    
-   var projName = newArr[0].project + " Sheet Metal"; 
-   var newGS = SpreadsheetApp.create(projName);
-   var address = newGS.getUrl();
-   var id = newGS.getId();
-   var ss = SpreadsheetApp.openById(id);
+ //GOOGLE SHEET URL
+   var ss = SpreadsheetApp.openByUrl(googleSheetURL);
+ //END OF GS URL   
+   
+ //GET GOOGLE SHEET
+   //var projName = newArr[0].project + " Sheet Metal"; 
+   //var newGS = SpreadsheetApp.create(projName);
+   //var address = newGS.getUrl();
+   //var id = newGS.getId();
+   //var ss = SpreadsheetApp.openById(id);
+   
    var sheet = ss.getSheetByName('Sheet1');
    var i = 2; 
    var j = 1;
@@ -190,9 +196,9 @@ function toGS (arr){
     row++;
    });
  
- Logger.log(address);
  
-    return address;
+ 
+   // return address;
  
 }
 

@@ -1,5 +1,10 @@
 <script>
-
+  
+  if (localStorage.url){
+          localStorage.removeItem("url");
+      }
+      console.log(localStorage);
+  
     //Q-IMS-... project number
   var qims = 'tbd';
   
@@ -34,7 +39,8 @@
 
 
 // This funciton returns the URL of the Google Sheet where the estimations are put into.
-function returnGSUrl (url){  
+function returnGSUrl (url){
+
     console.log(url);
     
     var sheetUrl = url;
