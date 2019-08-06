@@ -90,10 +90,10 @@ estimation.style.display = 'none';
   function printEstimate (userInfo){
   
       addMoreBTP.style.display = 'block';
+      finish.style.display = 'block';
       yourEstimation.style.display = 'block';
       estimation.style.display = 'block';
       //exp.style.display = 'block';
-      addToSheet.style.display = 'block';
         //var googleSheetURL = localStorage.getItem("url");
         //console.log(googleSheetURL)
       var price = document.createElement('div');
@@ -111,46 +111,38 @@ estimation.style.display = 'none';
        arr.push(jason);
        
        console.log(arr);
+    //CALL TOGS
+    google.script.run.toGS(arr,googleSheetURL);   
+       
     }
     
   
-  var exp = document.querySelector('.export');
-  exp.style.display = 'none';
-  
-  var addToSheet = document.querySelector('.addToSheet');
-  addToSheet.style.display = 'none';
-  
-  //Find and replace
-  exp.addEventListener("click", function (){
-        
-   google.script.run.withSuccessHandler(printUrl).toGS(arr);
-   
-  });
-
-   function printUrl(address){
-     var link = document.createElement('a');
-     link.target="_blank";
-     link.href = address;
-     link.innerText = 'Export complete. Click here to go to GS';
-     
-     document.querySelector('.GSLink').innerHTML = link;  
- }
- 
-
-  addtoGS.addEventListener("click", ()=> {
-    //var googleSheetURL = localStorage.getItem("url");
-       
-       google.script.run.toGS(arr,googleSheetURL);
-       
-       console.log(googleSheetURL)
-
-    });
 
   var addMoreBTP = document.querySelector('.addMoreBTP');
   addMoreBTP.style.display = 'none';
 
 
-
+  var finish = document.querySelector('.finish');
+  finish.style.display = 'none';
+  
+ finish.addEventListener("click",()=>{
+    document.querySelector ('.masterRight').style.display = 'none';
+    document.querySelector ('.masterLeft').style.display = 'none';
+    addMoreBTP.style.display = 'none';
+    
+    //Create link text
+    var estimationsLink = document.querySelector('.estimationsLink');
+   
+    var link = document.createElement('a');
+    link.classList.add('link');
+    link.href = googleSheetURL;
+    link.target = "_blank";
+    link.innerText = 'Go to estimations in Google Sheets';
+    estimationsLink.prepend(link);
+    
+    estimationsLink.style.display ='block';
+  
+  });
 
 
 

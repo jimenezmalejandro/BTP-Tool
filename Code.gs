@@ -29,12 +29,6 @@ function loadSheetMetal(){
 
 
 
-
-
-// GOOGLE SHEET URL
-var GSUrl = "";
-Logger.log('This is GSUrl:' + GSUrl);
-
 //GET MATERIAL COST FROM GSM COST SHEET
   var ss = SpreadsheetApp.openById('1kFtNEVhIQr3mMaFbXXP8hMTl_nhTr-7pHtprRf4zf5U');
   var sheet = ss.getSheetByName('Sheet Metal');
@@ -137,6 +131,7 @@ function estimate(userInfo) {
       }
       
       
+      
      return userInfo; 
      
 }
@@ -145,7 +140,8 @@ function estimate(userInfo) {
 // Parse JSON strings to objects and push to newArr. Create new Google sheet and set all objects in the sheet.
 
 function toGS (arr,googleSheetURL){
-    Logger.log(GSUrl);
+    Logger.log(googleSheetURL);
+    
     var newArr = [];
     
     var index = [
