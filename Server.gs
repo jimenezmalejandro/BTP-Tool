@@ -23,7 +23,7 @@ function doGet(e) {
 
 function loadSheetMetal(){
     
-   return HtmlService.createTemplateFromFile('index').evaluate();    
+   return HtmlService.createTemplateFromFile('sheetMetalHTML').evaluate();    
 
 }
 
