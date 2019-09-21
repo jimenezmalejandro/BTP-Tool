@@ -32,7 +32,7 @@
   //Start Button clicked, show all buttons, replace for Actual proj # when clicked // Call start() in order to create a new Google Sheet to paste all the info
   startButton.addEventListener("click",(e) =>{
       homeButtons.style.display = 'block';
-      projectNumber.innerHTML = `<h3> Project # ${qims} </h3>`;
+      projectNumber.innerHTML = `<h5> Project # ${qims} </h5>`;
                    
           google.script.run.withSuccessHandler(returnGSUrl).start(qims);
   });

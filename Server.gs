@@ -156,22 +156,15 @@ function toGS (arr,googleSheetURL){
         newArr.push(JSON.parse(element));
     });
     
- //GOOGLE SHEET URL
+ //OPEN GOOGLE SHEET BY URL
    var ss = SpreadsheetApp.openByUrl(googleSheetURL);
- //END OF GS URL   
-   
- //GET GOOGLE SHEET
-   //var projName = newArr[0].project + " Sheet Metal"; 
-   //var newGS = SpreadsheetApp.create(projName);
-   //var address = newGS.getUrl();
-   //var id = newGS.getId();
-   //var ss = SpreadsheetApp.openById(id);
-   
    var sheet = ss.getSheetByName('Sheet1');
+   var lastRow = sheet.getLastRow() + 1;
    var i = 2; 
    var j = 1;
-   var initRange = sheet.getRange(i, 1);
+   var initRange = sheet.getRange(lastRow, 1);
    var row = 2;
+   Logger.log(lastRow);
    
    index[0].forEach(function (element){
        sheet.getRange(1,j).setValue(element)
