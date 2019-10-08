@@ -1,0 +1,64 @@
+<script>
+  
+  if (localStorage.url){
+          localStorage.removeItem("url");
+      }
+      console.log(localStorage);
+      
+ //Project Number DIV = Input Proj #
+  var projectNumber = document.querySelector('.projectNumber');
+ 
+  
+    //Q-IMS-... project number
+  var qims = 'tbd';
+  
+  // Hiding Loader
+  var loader = document.querySelector('.loader');
+  loader.style.display = 'none';
+  
+  //Hiding buttons in home
+  var homeButtons = document.querySelector('.HomeButtons');
+  homeButtons.style.display = 'none';
+  
+  //hiding start button
+  var startButton = document.querySelector('.startButton');
+  startButton.style.display = 'none';
+  
+  //If Project # > 5 show Start button
+  var project = document.querySelector('.project');
+  project.addEventListener("input",(e)=>{
+          if(e.target.value.length >= 5){
+              startButton.style.display = 'block';
+              qims = e.target.value;
+      }
+  });
+  
+  //Project Number DIV = Input Proj #
+  var projectNumber = document.querySelector('.projectNumber');
+  
+  
+  //Start Button clicked, show all buttons, replace for Actual proj # when clicked // Call start() in order to create a new Google Sheet to paste all the info
+  startButton.addEventListener("click",(e) =>{
+      loader.style.display = 'block';
+      //homeButtons.style.display = 'block'; --Moved to function returnGSUrl. This will display until google sheet is loaded
+      projectNumber.innerHTML = `<h5> Project ${qims} </h5>`;
+      //projectNumber.style.display = 'block';             
+          google.script.run.withSuccessHandler(returnGSUrl).start(qims);
+  });
+
+
+// This funciton returns the URL of the Google Sheet where the estimations are put into.
+function returnGSUrl (url){
+
+    console.log(url);
+    
+    var sheetUrl = url;
+    
+   localStorage.setItem("url", sheetUrl);
+   loader.style.display = 'none';
+   homeButtons.style.display = 'block';
+}
+  
+
+
+</script>
