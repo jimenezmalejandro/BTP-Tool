@@ -2,8 +2,19 @@
 
 var googleSheetURL = localStorage.getItem("url");
 
+//Initialize floating Action Button    
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, 
+            {direction: 'left', hoverEnabled: false});
+  });
+
 var arr = [];
 
+var addMore = document.querySelector("#addMore");
+
+var moreBTP = document.querySelector(".moreBTP");
+moreBTP.style.display = 'none';
 
 document.getElementById("hdw").style.display = "none";
 document.getElementById("infoMsg").style.display = "block";
@@ -28,6 +39,15 @@ document.getElementById('hide').addEventListener("click",toggle);
           show.style.display = 'block';
          }
         }
+
+//Toggle -Add more BTP Button        
+ addMore.addEventListener("click",function(){
+     if(moreBTP.style.display === 'block'){
+         moreBTP.style.display = 'none';
+     }else{
+       moreBTP.style.display = 'block';
+       }
+ });     
         
        
 //Show Information square
@@ -109,7 +129,7 @@ estimation.style.display = 'none';
       var jason = JSON.stringify(userInfo);
      
        arr.push(jason);
-       
+ 
        console.log(arr);
     //CALL TOGS
     google.script.run.toGS(arr,googleSheetURL);   

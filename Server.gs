@@ -6,9 +6,11 @@ Route.path = function (route,callback){
 
 //LOAD WEB APP
 function doGet(e) {
+Logger.log(Route);
+console.log(Route);
 
-  Route.path("sheet",loadSheetMetal);
-  
+    Route.path('plastics',loadPlastics);
+    Route.path('sheet',loadSheetMetal);
   
   if(Route[e.parameters.v] ){
   
@@ -18,6 +20,12 @@ function doGet(e) {
       
       return HtmlService.createTemplateFromFile('Home').evaluate();
     }
+}
+
+
+function loadPlastics(){
+    
+   return HtmlService.createTemplateFromFile('plasticsHTML').evaluate();  
 }
 
 
@@ -249,14 +257,4 @@ function start (projNum){
 function include(filename){
   return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
-
-
-
-
-
-
-
-
-
-
 

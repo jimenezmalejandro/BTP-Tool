@@ -4,6 +4,7 @@
           localStorage.removeItem("url");
       }
       console.log(localStorage);
+           
       
  //Project Number DIV = Input Proj #
   var projectNumber = document.querySelector('.projectNumber');
@@ -12,9 +13,12 @@
     //Q-IMS-... project number
   var qims = 'tbd';
   
+  var loading = document.querySelector('.loading');
+  loading.style.display = 'none';
+  
   // Hiding Loader
   var loader = document.querySelector('.loader');
-  loader.style.display = 'none';
+  //loader.style.display = 'none';
   
   //Hiding buttons in home
   var homeButtons = document.querySelector('.HomeButtons');
@@ -39,7 +43,7 @@
   
   //Start Button clicked, show all buttons, replace for Actual proj # when clicked // Call start() in order to create a new Google Sheet to paste all the info
   startButton.addEventListener("click",(e) =>{
-      loader.style.display = 'block';
+      loading.style.display = 'block';
       //homeButtons.style.display = 'block'; --Moved to function returnGSUrl. This will display until google sheet is loaded
       projectNumber.innerHTML = `<h5> Project ${qims} </h5>`;
       //projectNumber.style.display = 'block';             
@@ -55,7 +59,8 @@ function returnGSUrl (url){
     var sheetUrl = url;
     
    localStorage.setItem("url", sheetUrl);
-   loader.style.display = 'none';
+   console.log(localStorage);
+   loading.style.display = 'none';
    homeButtons.style.display = 'block';
 }
   

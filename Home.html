@@ -16,24 +16,30 @@
       
        <h1> Should Cost Tool</h1>     
       <!--Buttons --> 
-      
+        <form>
              <div class="projectNumber">
                <div class="row">
                   <div class="input-field col s3">
                    <i class="material-icons prefix">account_balance_wallet</i>   
-                    <input id="project" type="text"  class="validate project">
+                    <input id="project" type="text"  class="validate project" required> 
                     <label for="project">Project </label>
                     <span class="helper-text" data-error="wrong" data-success="Enter project number and click on start">Format Q-IMS-#</span>
                   </div>
-                        <button class="startButton btn waves-effect waves-light">Start
-                        </button>
-                
-            </div>
-        </div>
+                       <button class="startButton btn waves-effect waves-light">Start
+                       </button> 
+               </div>
+             </div>
+        </form>
+                        
+
          
       <!--Loader -->   
-      <div class="loader"></div>
-
+     <div class= "loading">
+       
+       <p>Loading Google Services ...</p>
+       
+       <div class="loader"></div>
+     </div> 
 
       <!--Home Buttons DIV -->      <!--REMOVE  animate-bottom-->  
       <div class="HomeButtons animate-bottom">
@@ -42,7 +48,7 @@
          </div>
       
        <div>
-           <a href= "#" class="btn waves-effect waves-light" id="plasticStart">Plastic</a>
+           <a href= "<?=ScriptApp.getService().getUrl();?>?v=plastics" class="btn waves-effect waves-light" id="plasticStart">Plastic</a>
        </div>
   
        

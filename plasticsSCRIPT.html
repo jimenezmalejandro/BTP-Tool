@@ -1,0 +1,93 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+
+
+let partNumber = document.querySelector('#partNumber');
+let weight = document.querySelector('.weight');
+let surfaceArea = document.querySelector('.surfaceArea');
+let material = document.querySelector('.material');
+let checkboxSurface = document.querySelector('#checkboxSurface');
+let checkbox = document.querySelector('.checkbox');
+let strokes = document.querySelector('.strokes');
+let weightOnHand = document.querySelector('.weightOnHand');
+let volume = document.querySelector('.volume');
+let switchButton = document.querySelector('#switchButton');
+let meassures = document.querySelector('.meassures');
+let units = document.querySelector('#units');
+switchButton.checked = true;
+let weightValue = document.querySelector('#weight');
+
+weight.style.display ='none';
+surfaceArea.style.display ='none';
+material.style.display = 'none';
+checkbox.style.display = 'none';
+strokes.style.display = 'none';
+weightOnHand.style.display = 'none';
+volume.style.display ='none';
+
+
+//Add material when PN is filled
+partNumber.addEventListener('input', (e)=>{
+    material.style.display ='block'; 
+});
+
+
+
+//Add weight when material is filled
+material.addEventListener('change', (e)=>{
+  weightOnHand.style.display ='block'; 
+  weight.style.display ='block';
+});
+
+
+//Add checkbox when weight is filled
+weight.addEventListener('change', ()=>{
+  checkbox.style.display = 'block';
+});
+
+//Toggle finishCheckbox option
+checkboxSurface.addEventListener('click', ()=>{
+  if (surfaceArea.style.display === 'none'){   
+            surfaceArea.style.display = 'block';
+            strokes.style.display = 'block';
+  }else{
+    surfaceArea.style.display = 'none';
+    strokes.style.display = 'none';
+  }
+});
+
+
+// Weight on hand switch
+switchButton.addEventListener('change',(e)=>{
+  
+    console.log(e.target.checked);
+        if(e.target.checked === false){
+            volume.style.display = 'block';
+                
+                //Get all input values in the calculation of volume sectoin (units, length, width...)
+                let measInputs = Array.from(volume.getElementsByTagName('input'));
+                console.log(measInputs);
+                let volumeValues = {}; 
+                    measInputs.forEach(elem =>{elem.addEventListener('change',e =>{
+                      volumeValues[elem.id] = elem.value;
+                        if(Object.keys(volumeValues).length >= 4){
+                            Object.values(volumeValues).forEach(elem =>{
+                              volumeValues.total = volumeValues.length * volumeValues.thickness * volumeValues.height * volumeValues.width;
+                              weightValue.value = volumeValues.total;
+                            });
+                        }
+
+                      M.updateTextFields(); 
+                    })});  
+                    
+        }else{
+            volume.style.display = 'none'
+            
+        }
+  
+});
+</script>

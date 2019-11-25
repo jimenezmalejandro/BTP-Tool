@@ -16,7 +16,7 @@
   
 <!--retunr Home BUtton -->  
       <div class="homeBtn">  
-         <a href= "<?=ScriptApp.getService().getUrl();?>" class="waves-effect waves-light btn-small"><i class="material-icons">home</i></a>       
+         <a href= "<?=ScriptApp.getService().getUrl();?>" class="waves-effect waves-light btn-small"><i class="material-icons">cancel</i></a>       
       </div>
       
 <!-- estimations link -->  
@@ -220,12 +220,24 @@
   
      
      <div class="addMoreBTP"> 
-      <div class="tooltip"> <a class="btn waves-effect waves-light cyan lighten-1" id="addMore">Add other BTP</a>
+      <div class="tooltip"> <a class="btn waves-effect waves-light cyan" id="addMore">Add other BTP<i class="material-icons">add</i></a>
       </div>   
      </div>  
      
+     <!--More BTP items buttons-->
+    <div class= "moreBTP">  
+         <a class=" btn waves-effect waves-light btn-small cyan lighten-2 smallBtn" id="PCBsButton">PCB's</a>       
+           
+           <a 
+            href= "<?=ScriptApp.getService().getUrl();?>?v=plastics" class=" btn waves-effect waves-light btn-small cyan lighten-2 smallBtn" 
+            id="plasticsButton">Plastics
+           </a>
+    </div>
+     
+     
+     <!--Complete-->
      <div class="finish">  
-         <a class=" btn waves-effect waves-light btn-small" id="finishBtn">Complete <i class="material-icons">cloud_done</i></a>       
+         <a class=" btn waves-effect waves-light btn-small teal accent-3" id="finishBtn">Complete <i class="material-icons">cloud_done</i></a>       
       </div>
                     
 
