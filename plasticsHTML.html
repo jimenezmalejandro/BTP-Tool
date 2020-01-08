@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/59ecaa98b9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"  href="styles.css">
+    
+    <?!= include('style'); ?> 
+  </head>
+
+
+
+
+
+  <body>
+  <!--retunr Home BUtton -->  
+      <div class="homeBtn">  
+         <a href= "<?=ScriptApp.getService().getUrl();?>" class="waves-effect waves-light btn-small"><i class="material-icons">cancel</i></a>       
+      </div>
+      
+<!--MASTER LEFT BEGINS -->  
+<div class="masterLeft">
+
+
+        
+
+    <h2> Plastic Injection </h2><br/>
+
+
+
+    <div class="row">
+        <div class="input-field col s5">
+        <i class="material-icons prefix">reorder</i>   
+          <input id="partNumber" type="text"  class="validate" required>
+          <label for="partNumber">Part Number</label>
+        </div>
+    </div>
+
+
+        <!--MATERIAL SELECTION-->
+    <div class="material ">     
+        <div class="form-row ">
+            <i class="material-icons prefix">gradient</i>         
+            <label for="material" class="labels"> Material</label>
+           <div class="row"> 
+            <div class="input-field col s12 m6">
+               <select name="material" id= "materialID">
+               <option  disabled selected>Select</option>
+               <option value="ABS">ABS</option>
+               <option value="PC+ABS">PC+ABS</option>
+               <option value="Nylon">Nylon</option>
+               <option value="PS">PS</option>
+               <option value="PPO">PPO</option>
+               <option value="POM(Acetal)">POM(Acetal)</option>
+               <option value="Other">Other</option>
+               <option value="Other">Other</option>  
+               </select>  
+               </div>
+              </div>
+            </div>     <!--END OF MATERIAL SELECTION-->
+        </div>
+
+              <!-- Switch Weight on hand-->
+        <div class="switch weightOnHand">
+          <label><h5>Part weight on hand</h5>
+            No
+            <input type="checkbox" id="switchButton">
+            <span class="lever"></span>
+            Yes
+          </label>
+        </div>
+
+       <!--- CALCULATION OF VOLUME--> 
+       
+      
+        <div class = "loadingCalc">Loading volume calculator
+       <div class="loader"></div>
+       </div>
+      
+       
+       <div class="volume">
+        <label><h6>Calculation of Volume</h6></label>
+          
+          <!--measure selection-->
+         
+          <div class="row"> 
+              <div class="input-field col s5">
+                  <i class="material-icons prefix">straighten</i>
+                      <select id="units" name="units" required>
+                        <option value="milimeters">Milimeters (mm)</option>
+                        <option value="inches">Inches (in)</option>
+                     </select>
+                      <label>Units</label>
+              </div>
+          </div>
+          
+          
+          <!--------- shapes---------------->
+      <div class="shapes">
+        <label for="shapeType"><h6>Shape</h6></label>
+        <div class="row">
+         <div class="input-field col s12 m6">
+            <select id="shapeType" name="shapeType">  
+              <option disabled selected >Select shape</option>
+              <option value="prism_octagonal.png">Octagonal Prism</option>
+              <option value="frustum_conical.png">Conical Frustum</option>
+              <option value="tube_rectangular.png">Rectangular Tube</option>
+              <option value="frustum_triangular.png">Triangular Frustum</option>
+              <option value="pyramid_octagonal.png">Octagonal Pyramid</option>
+              <option value="beam_z.png">Z Beam</option>
+              <option value="pyramid_rectangular.png">Rectangular Pyramid</option>
+              <option value="frustum_octagonal.png">Octagonal Frustum</option>
+              <option value="frustum_elliptic.png">Elliptic Frustum</option>
+              <option value="tube_cylindrical.png">Cylindrical Tube</option>
+              <option value="sphere_segment.png">Segment Sphere</option>
+              <option value="beam_l.png">L Beam</option>
+              <option value="torus.png">Torus</option>
+              <option value="cylinder_cap.png">Cap Cylinder</option>
+              <option value="ellipsoid.png">Ellipsoid</option>
+              <option value="prism_rectangular.png">Rectangular Prism</option>
+              <option value="frustum_rectangular.png">Rectangular Frustum</option>
+              <option value="beam_t.png">T Beam</option>
+              <option value="cone_elliptic.png">Elliptic Cone</option>
+              <option value="sphere_wedge.png">Wedge Sphere</option>
+              <option value="cone.png">Cone</option>
+              <option value="frustum_other.png">Other Frustum</option>
+              <option value="cube.png">Cube</option>
+              <option value="prism_pentagonal.png">Pentagonal Prism</option>
+              <option value="pyramid_triangular.png">Triangular Pyramid</option>
+              <option value="beam_i.png">I Beam</option>
+              <option value="sphere.png">Sphere</option>
+              <option value="prism_hexagonal.png">Hexagonal Prism</option>
+              <option value="prism_triangular.png">Triangular Prism</option>
+              <option value="prism_other.png">Other Prism</option>
+              <option value="pyramid_hexagonal.png">Hexagonal Pyramid</option>
+              <option value="pyramid_other.png">Other Pyramid</option>
+              <option value="frustum_hexagonal.png">Hexagonal Frustum</option>
+              <option value="cylinder.png">Cylinder</option>
+              <option value="sphere_sector.png">Sector Sphere</option>
+              <option value="cylinder_elliptic.png">Elliptic Cylinder</option>
+              <option value="frustum_pentagonal.png">Pentagonal Frustum</option>
+              <option value="sphere_cap.png">Cap Sphere</option>
+              <option value="prism_trapezoidal.png">Trapezoidal Prism</option>
+              <option value="beam_u.png">U Beam</option>
+              <option value="pyramid_pentagonal.png">Pentagonal Pyramid</option>
+              <option value="cylinder_sector.png">Sector Cylinder</option>
+            </select>
+          </div>
+          <!--images-->
+           <img id="shapeImg" src="" alt="shape_image">
+
+        </div>
+        </div>
+        <!-------- shapes------------->
+        
+          
+            
+          <div class="meassures">
+                <label><h7>Envelope X-Y-Z</h7></label>
+                <div class="row">
+                    <div class="input-field col s3">
+                    <i class="material-icons prefix">trending_flat</i>   
+                      <input id="length" type="number" step="0.00001" class="validate" required>
+                      <label for="length" style="font-size: .7rem;">Length</label>
+                    </div>
+                    <div class="input-field col s3">
+                    <i class="material-icons prefix">swap_horiz</i>    
+                      <input id="width" type="number" step="0.00001" class="validate" required>
+                      <label for="width" style="font-size: .7rem;">Width</label>
+                    </div>
+                    <div class="input-field col s3">
+                          <i class="material-icons prefix">swap_vert</i>    
+                            <input id="height" type="number" step="0.00001" class="validate" required>
+                            <label for="height" style="font-size: .7rem;">Height</label>
+                      </div>
+                    <div class="input-field col s3">
+                        <i class="material-icons prefix">vertical_align_center</i>  
+                            <input id="thickness" type="number" step="0.00001" class="validate" required>
+                            <label for="thickness" style="font-size: .7rem;">Thickness</label>
+                    </div>
+                      
+
+                  </div>
+                </div>             
+
+        </div><!--VOLUME END-->
+
+
+
+    
+        <div class="row weight ">
+            <div class="input-field col s6">
+                <i class="material-icons prefix fas fa-weight-hanging"></i>
+                <input id="weight" type="number" step="0.00001"  class="validate" required>
+                <label for="weight" active>Weight (grams)</label>
+            </div>
+        </div>
+
+    <div class="checkbox">
+        <label for="checkboxSurface">
+          <input type="checkbox" id='checkboxSurface'/>
+          <span>This part includes finish</span>
+        </label>
+    </div>
+
+         <div class="row surfaceArea">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix fas fa-ruler-combined"></i>  
+                        <input id="surfaceArea" type="number"  step="0.00001" class="validate">
+                    <label for="surfaceArea">Sruface area (m²)</label>
+                </div>
+            </div>   
+
+            <div class="row strokes">
+              <div class="input-field col s6">
+                <i class="material-icons prefix fas fa-paint-brush"></i>  
+                      <input id="Numstrokes" type="number"  step="0.00001" class="validate">
+                  <label for="Numstrokes">Counts of stroke</label>
+              </div>
+          </div>  
+
+
+<!----END MASTER LEFT-->
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="sandbox.js"></script>
+    <?!= include('plasticsSCRIPT'); ?> 
+  </body>
+</html>
+

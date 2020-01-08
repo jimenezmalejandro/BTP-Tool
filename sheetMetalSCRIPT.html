@@ -1,20 +1,30 @@
 <script>
 
 
+var googleSheetURL = localStorage.getItem("url");
+//Initialize floating Action Button    
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, 
+            {direction: 'left', hoverEnabled: false});
+  });
 
 var arr = [];
-console.log(arr);
+
+var addMore = document.querySelector("#addMore");
+
+var moreBTP = document.querySelector(".moreBTP");
+moreBTP.style.display = 'none';
+
+document.getElementById("hdw").style.display = "none";
+document.getElementById("infoMsg").style.display = "block";
+document.getElementById("infoMsg").style.display = "none";
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
 });
-
-
-   
-document.getElementById("hdw").style.display = "none";
-document.getElementById("infoMsg").style.display = "block";
-document.getElementById("infoMsg").style.display = "none";
 
 
 //Toggle Hardware option    
@@ -29,10 +39,20 @@ document.getElementById('hide').addEventListener("click",toggle);
           show.style.display = 'block';
          }
         }
+
+//Toggle -Add more BTP Button        
+ addMore.addEventListener("click",function(){
+     if(moreBTP.style.display === 'block'){
+         moreBTP.style.display = 'none';
+     }else{
+       moreBTP.style.display = 'block';
+       }
+ });     
         
        
 //Show Information square
   document.getElementById('complexity').addEventListener("change",toggleInfoSqr);
+  
             function toggleInfoSqr (){
             var value = document.getElementById('complexity').value;
             if(value ==='Simple'){
@@ -61,7 +81,8 @@ document.getElementById('hide').addEventListener("click",toggle);
   var i = 0;
 
 function estimate(){
-  
+
+    
      var userInfo = {};
      var ids = document.querySelectorAll('*[id]'); 
      
@@ -70,6 +91,9 @@ function estimate(){
                    userInfo[element.id] = element.value;
                    }
              });
+               //ADD THE googleSheet -URL TO THE userInfo OBJECT
+               //userInfo.googleSheetURL = googleSheetURL;   
+             
       userInfo.hide = document.querySelector('#hide').checked;
       
 //  google.script.run.estimate(userInfo);
@@ -83,49 +107,62 @@ var estimation = document.querySelector('.estimation1');
 estimation.style.display = 'none';
 
 
-function printEstimate (userInfo){
+  function printEstimate (userInfo){
+  
+      addMoreBTP.style.display = 'block';
+      finish.style.display = 'block';
       yourEstimation.style.display = 'block';
       estimation.style.display = 'block';
-      exp.style.display = 'block';
-      
+      //exp.style.display = 'block';
+        //var googleSheetURL = localStorage.getItem("url");
+        //console.log(googleSheetURL)
       var price = document.createElement('div');
        price.classList.add('printEstimation');
-       price.innerText  = `Estimation ${i}
-       Material: ${userInfo.material} with ${userInfo.bending} bendings. Hardware: ${userInfo.hide === true ? 'Yes' : 'No'}
-       Sheet Area: ${Math.round(userInfo.surfaceArea *1000 )/1000}m², Total Volume: ${Math.round(userInfo.weight *1000)/1000}Kgs, 
-       Estimated Price$: ${Math.round(userInfo.estimation * 1000)/1000} `;
+             //Material: ${userInfo.material} with ${userInfo.bending} bendings. Hardware: ${userInfo.hide === true ? 'Yes' : 'No'}
+             //Sheet Area: ${Math.round(userInfo.surfaceArea *1000 )/1000}m², Total Volume: ${Math.round(userInfo.weight *1000)/1000}Kgs, 
+       price.innerText  = `Part Number ${userInfo.partNumber} | Estimated Price$: ${Math.round(userInfo.estimation * 1000)/1000} 
+       
+       `;
+       
       estimation.prepend(price);
       
       var jason = JSON.stringify(userInfo);
      
        arr.push(jason);
-       
+ 
        console.log(arr);
+    //CALL TOGS
+    google.script.run.toGS(arr,googleSheetURL);   
+       
     }
     
   
-  var exp = document.querySelector('.export');
-  exp.style.display = 'none';
+
+  var addMoreBTP = document.querySelector('.addMoreBTP');
+  addMoreBTP.style.display = 'none';
+
+
+  var finish = document.querySelector('#finishBtn');
+  finish.style.display = 'none';
   
-  //Find and replace
-  exp.addEventListener("click", function (){
-        
-   google.script.run.withSuccessHandler(printUrl).toGS(arr);
+ finish.addEventListener("click",()=>{
+    document.querySelector ('.masterRight').style.display = 'none';
+    document.querySelector ('.masterLeft').style.display = 'none';
+    addMoreBTP.style.display = 'none';
+    
+    //Create link text
+    var estimationsLink = document.querySelector('.estimationsLink');
    
+    var link = document.createElement('a');
+    link.classList.add('link');
+    link.href = googleSheetURL;
+    link.target = "_blank";
+    link.innerText = 'Go to estimations in Google Sheets';
+    estimationsLink.prepend(link);
+    
+    estimationsLink.style.display ='block';
+  
   });
-
-   function printUrl(address){
-     var link = document.createElement('a');
-     link.target="_blank";
-     link.href = address;
-     link.innerText = 'Export complete. Click here to go to GS';
-     
-     document.querySelector('.GSLink').append(link);
-     
- }
-
-
-
 
 
 
